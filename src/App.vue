@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-11-24 22:14:39
- * @LastEditTime: 2021-11-26 02:48:24
+ * @LastEditTime: 2021-11-26 05:40:56
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /Vue-learn-related/src/App.vue
@@ -10,7 +10,7 @@
   <div id="app">
     <h1>Todo List</h1>
     <TodoHeader :addItem="addItem" />
-    <TodoList :todolist="todolist"/>
+    <TodoList :removeTodo="removeTodo" :selectTodo="selectTodo" :todolist="todolist"/>
     <TodoFooter/>
   </div>
 </template>
@@ -42,6 +42,26 @@ export default {
   methods: {
       addItem(value){
           this.todolist.unshift(value)
+      },
+      selectTodo(id){
+          this.todolist.forEach(i => {
+              if(id === i.id){
+                  i.isShow = !i.isShow
+              }
+          })
+
+      },
+      removeTodo(id){
+          this.todolist.forEach((value,index) => {
+              if(id === value.id){
+                  if(confirm('Please confirm again')){
+                      this.todolist.splice(index,1)
+
+                  }else{
+                      return
+                  }
+              }
+          })
       }
   },
 };

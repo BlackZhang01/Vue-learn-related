@@ -1,16 +1,16 @@
 <!--
  * @Author: your name
  * @Date: 2021-11-25 11:19:11
- * @LastEditTime: 2021-11-26 02:33:01
+ * @LastEditTime: 2021-11-26 05:38:08
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /Vue-learn-related/src/components/TodoList.vue
 -->
 <template>
-  <ol class="main">
-    <TodoItem :todolist="todolist" />
+  <div class="main">
+    <TodoItem :removeTodo="removeTodo" :selectTodo="selectTodo" :todolist="todolist" />
     
-  </ol>
+  </div>
 </template>
 
 <script>
@@ -19,7 +19,7 @@ import TodoItem from './TodoItem'
 
 export default {
   name: "TodoList",
-  props:['todolist'],
+  props:['todolist','selectTodo','removeTodo'],
   components: {
     TodoItem
   }
@@ -40,7 +40,13 @@ export default {
   margin-right: 5px;
   height: 30px;
 }
+.main button{
+  display: none;
+}
 .main li:hover {
   background-color: gray;
+}
+.main li:hover button{
+  display: inline-block;
 }
 </style>
